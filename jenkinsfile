@@ -28,11 +28,4 @@ pipeline{
             }
         }
     }
-
-    post {
-        success {
-            // Cache Cypress binary
-            cache(paths: ['C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Cypress\\Cache'])
-        }
-    }
 }
