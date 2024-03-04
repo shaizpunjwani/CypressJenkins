@@ -16,7 +16,8 @@ pipeline{
 
         stage("Testing"){
             steps{
-                bat "npm i"
+                bat "npm ci"
+                bat "npx cypress install"
                 bat "npx cypress run --browser ${BROWSER} --spec ${SPEC}"
             }
         }
@@ -25,6 +26,13 @@ pipeline{
             steps{
                 echo "Deploying project"
             }
+        }
+    }
+
+    post {
+        success {
+            // Cache Cypress binary
+            cache(paths: ['C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Cypress\\Cache'])
         }
     }
 }
